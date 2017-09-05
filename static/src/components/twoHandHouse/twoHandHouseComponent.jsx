@@ -60,24 +60,24 @@ class TwoHandHouseComponent extends Component {
 	render(){
 		
 		return (
-			<div style={{margin:'120px 250px 120px 250px',border:'1px solid blue'}} >
-				<div id="filterBox" style={{margin:'0px 0px 70px 0px'}}>
-					<Row >	
-							<Col span={1}><label>售价</label></Col>
+			<div style={{margin:'120px 250px 120px 250px',color:'#394042'}} >
+				<div id="filterBox" style={{margin:'0px 0px 35px 0px',background:'#F5F5F5',padding:'25px'}}>
+					<Row style={{height:'27px'}}>	
+							<Col span={1} style={{fontWeight:'bold'}}>售价</Col>
 							<Col span={22}>
 								<RadioGroup options={this.state.priceOptions} size="large"></RadioGroup>
 							</Col>
 							
 					</Row>
-					<Row>	
-							<Col span={1}><label>面积</label></Col>
+					<Row style={{height:'27px'}}>	
+							<Col span={1} style={{fontWeight:'bold'}}>面积</Col>
 							<Col span={21}>
 								<RadioGroup options={this.state.areaOptions}></RadioGroup>
 							</Col>
 							
 					</Row>
-					<Row>	
-							<Col span={1}><label>户型</label></Col>
+					<Row style={{height:'27px'}}>	
+							<Col span={1} style={{fontWeight:'bold'}}>户型</Col>
 							<Col span={21}>
 								<RadioGroup onChange={this.onChange} value={this.state.value}>
 									<Radio value={1}>一室</Radio>
@@ -88,8 +88,8 @@ class TwoHandHouseComponent extends Component {
 							</Col>  
 					</Row>
 				</div>
-				<div id="123" style={{color:'#00ae66',fontSize:'22px',fontWeight:'bold'}}>共找到<span style={{color:'#00ae66',fontSize:22}}>72900</span>套上海二手房源</div>
-				<div id="sort" style={{border:'1px solid red'}}>
+				<div id="123" style={{color:'#00ae66',fontSize:'22px',fontWeight:'bold',margin:'0px 0px 35px 0px'}}>共找到<span style={{color:'#00ae66',fontSize:22}}>72900</span>套上海二手房源</div>
+				<div id="sort" style={{border:'1px solid #F5F5F5'}}>
 					<Menu
 						onClick={this.handleClick}
 						selectedKeys={[this.state.current]}
@@ -113,6 +113,18 @@ class TwoHandHouseComponent extends Component {
 				</div>
 				<div id='content' >
 					<TwoHandHouseItemComponent />
+					<TwoHandHouseItemComponent />		
+<TwoHandHouseItemComponent />
+					<TwoHandHouseItemComponent />
+<TwoHandHouseItemComponent />
+					<TwoHandHouseItemComponent />
+<TwoHandHouseItemComponent />
+					<TwoHandHouseItemComponent /><TwoHandHouseItemComponent />
+					<TwoHandHouseItemComponent /><TwoHandHouseItemComponent />
+					<TwoHandHouseItemComponent />
+<TwoHandHouseItemComponent />
+					<TwoHandHouseItemComponent />
+<TwoHandHouseItemComponent />
 					<TwoHandHouseItemComponent />					
 				</div>
 				
