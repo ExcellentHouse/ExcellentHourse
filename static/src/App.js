@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TwoHandHouseComponent from './components/twoHandHouse/twoHandHouseComponent';
+import TwoHandHouseComponent from './components/twoHandHouse/TwoHandHouseComponent';
 import 'antd/dist/antd.css';
 import './static/css/common.css';
 import {
