@@ -26,7 +26,7 @@ class TwoHandHouseComponent extends Component {
 		};
 		
 	}
-	 
+
   componentWillMount(){
 	  this.setState({
 			priceOptions:[
