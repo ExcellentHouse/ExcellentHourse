@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TwoHandHouseComponent from './components/twoHandHouse/TwoHandHouseComponent';
 import SigninAndSignoutComponent from './components/userSigninAndSignout/SigninAndSignoutComponent';
+import { Row, Col } from 'antd';
 import 'antd/dist/antd.css';
 import './static/css/common.css';
 import {
@@ -8,7 +9,10 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import { Modal} from 'antd';
 import { Menu, Icon } from 'antd';
+import { Form,Input, Button, Checkbox } from 'antd';
+const FormItem = Form.Item;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
@@ -19,16 +23,154 @@ class App extends Component {
 	constructor(){
 		super();
 		this.state={
-            current: 'home'
+            current: 'home',
+			loginVisible:false
 		}
+
 	}
+    componentWillMount(){
+
+	}
+
+
+    handleLogin = (e) => {
+        this.setState({
+			loginVisible:true
+		});
+    }
+
+
+
+    formItemLayout = {
+        labelCol: {
+            xs: { span: 24 },
+            sm: { span: 5 },
+        },
+        wrapperCol: {
+            xs: { span: 24 },
+            sm: { span: 12 },
+        },
+    };
+    formButtonLayout = {
+    	wrapperCol:{offset:5}
+	}
+
+
 
 
 
   render() {
     return (
 		<Router>
+
+
+
+
 			<div>
+				<Modal
+					title="大泽帅买房子之登录"
+					visible={this.state.loginVisible}
+					footer={[
+						<Row>
+							<Col span={2}>注册</Col>
+							<Col span={12}></Col>
+						</Row>
+                    ]}
+				>
+					<Form>
+						<FormItem
+                            {...this.formItemLayout}
+							label="用户名"
+								  validateStatus="error"
+								  help="账号或密码错误">
+							<Input placeholder="请在此输入您的用户名" id="error" />
+						</FormItem>
+						<FormItem
+                            {...this.formItemLayout}
+							label="密码"
+							hasFeedback
+							validateStatus="success"
+						>
+							<Input placeholder="请在此输入您的密码" id="success" />
+						</FormItem>
+						<FormItem
+                            {...this.formButtonLayout}
+						>
+							<Button>登录</Button>
+						</FormItem>
+
+					</Form>
+				</Modal>
+				<Modal
+					title="大泽帅买房子之登录"
+					visible={this.state.loginVisible}
+					footer={[
+						<Row>
+							<Col span={2}>注册</Col>
+							<Col span={12}></Col>
+						</Row>
+                    ]}
+				>
+					<Form>
+						<FormItem
+                            {...this.formItemLayout}
+							label="用户名"
+							validateStatus="error"
+							help="账号或密码错误">
+							<Input placeholder="请在此输入您的用户名" id="error" />
+						</FormItem>
+						<FormItem
+                            {...this.formItemLayout}
+							label="密码"
+							hasFeedback
+							validateStatus="success"
+						>
+							<Input placeholder="请在此输入您的密码" id="success" />
+						</FormItem>
+						<FormItem
+                            {...this.formItemLayout}
+							label="密码"
+							hasFeedback
+							validateStatus="success"
+						>
+							<Input placeholder="请在此输入您的密码" id="success" />
+						</FormItem>
+						<FormItem
+                            {...this.formItemLayout}
+							label="密码"
+							hasFeedback
+							validateStatus="success"
+						>
+							<Input placeholder="请在此输入您的密码" id="success" />
+						</FormItem>
+						<FormItem
+                            {...this.formItemLayout}
+							label="密码"
+							hasFeedback
+							validateStatus="success"
+						>
+							<Input placeholder="请在此输入您的密码" id="success" />
+						</FormItem>
+						<FormItem
+                            {...this.formItemLayout}
+							label="密码"
+							hasFeedback
+							validateStatus="success"
+						>
+							<Input placeholder="请在此输入您的密码" id="success" />
+						</FormItem>
+
+						<FormItem
+                            {...this.formButtonLayout}
+						>
+							<Button>登录</Button>
+						</FormItem>
+
+					</Form>
+				</Modal>
+
+
+
 				<Menu
 				selectedKeys={[this.state.current]}
 				mode="horizontal"
@@ -54,7 +196,7 @@ class App extends Component {
 				<Menu.Item key="2span" style={{width:'500px'}}></Menu.Item>
 
 				<Menu.Item key="inAndUp">
-				  <Link to="/inAndUp" style={{color:'white'}}>登录/注册</Link>
+				  <Link to="/inAndUp" style={{color:'white'}} onClick={this.handleLogin}>登录/注册</Link>
 				</Menu.Item>
 
 				<Menu.Item key="3span" style={{width:'30px'}}></Menu.Item>
