@@ -24,20 +24,36 @@ class App extends Component {
 		super();
 		this.state={
             current: 'home',
-			loginVisible:false
+			signinVisible:false,
+			signupVisible:false
 		}
-
 	}
     componentWillMount(){
 
 	}
 
 
-    handleLogin = (e) => {
+    handleSigninAndSignupCancle = (e) => {
         this.setState({
-			loginVisible:true
+            signinVisible:false,
+            signupVisible:false
+        });
+    }
+
+    handleSignin = (e) => {
+        this.setState({
+            signinVisible:true,
+			signupVisible:false
 		});
     }
+    handleSignup = (e) => {
+
+    	console.log(e);
+    	this.setState({
+			signinVisible:false,
+			signupVisible:true
+		});
+	}
 
 
 
@@ -69,10 +85,11 @@ class App extends Component {
 			<div>
 				<Modal
 					title="大泽帅买房子之登录"
-					visible={this.state.loginVisible}
+					visible={this.state.signinVisible}
+					onCancel={this.handleSigninAndSignupCancle}
 					footer={[
 						<Row>
-							<Col span={2}>注册</Col>
+							<Col span={2}><a onClick={this.handleSignup}>注册</a></Col>
 							<Col span={12}></Col>
 						</Row>
                     ]}
@@ -101,12 +118,15 @@ class App extends Component {
 
 					</Form>
 				</Modal>
+
+
 				<Modal
-					title="大泽帅买房子之登录"
-					visible={this.state.loginVisible}
+					title="大泽帅买房子之注册"
+					visible={this.state.signupVisible}
+					onCancel={this.handleSigninAndSignupCancle}
 					footer={[
 						<Row>
-							<Col span={2}>注册</Col>
+							<Col span={6}><a onClick={this.handleSignin}>有账号就快来登录呗</a></Col>
 							<Col span={12}></Col>
 						</Row>
                     ]}
@@ -128,44 +148,10 @@ class App extends Component {
 							<Input placeholder="请在此输入您的密码" id="success" />
 						</FormItem>
 						<FormItem
-                            {...this.formItemLayout}
-							label="密码"
-							hasFeedback
-							validateStatus="success"
-						>
-							<Input placeholder="请在此输入您的密码" id="success" />
-						</FormItem>
-						<FormItem
-                            {...this.formItemLayout}
-							label="密码"
-							hasFeedback
-							validateStatus="success"
-						>
-							<Input placeholder="请在此输入您的密码" id="success" />
-						</FormItem>
-						<FormItem
-                            {...this.formItemLayout}
-							label="密码"
-							hasFeedback
-							validateStatus="success"
-						>
-							<Input placeholder="请在此输入您的密码" id="success" />
-						</FormItem>
-						<FormItem
-                            {...this.formItemLayout}
-							label="密码"
-							hasFeedback
-							validateStatus="success"
-						>
-							<Input placeholder="请在此输入您的密码" id="success" />
-						</FormItem>
-
-						<FormItem
                             {...this.formButtonLayout}
 						>
-							<Button>登录</Button>
+							<Button>来个号</Button>
 						</FormItem>
-
 					</Form>
 				</Modal>
 
@@ -196,7 +182,7 @@ class App extends Component {
 				<Menu.Item key="2span" style={{width:'500px'}}></Menu.Item>
 
 				<Menu.Item key="inAndUp">
-				  <Link to="/inAndUp" style={{color:'white'}} onClick={this.handleLogin}>登录/注册</Link>
+				  <Link to="/inAndUp" style={{color:'white'}} onClick={this.handleSignin}>登录/注册</Link>
 				</Menu.Item>
 
 				<Menu.Item key="3span" style={{width:'30px'}}></Menu.Item>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'antd';
-import { Radio } from 'antd';
+import { Radio,Form,Row, Col } from 'antd';
 import '../../static/css/twoHandHouse.css';
 import TwoHandHouseItemComponent from './TwoHandHouseItemComponent';
 import 'antd/dist/antd.css';
@@ -10,6 +9,7 @@ import {
   Link
 } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
+const FormItem = Form.Item;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 const RadioGroup = Radio.Group;
@@ -26,6 +26,20 @@ class TwoHandHouseComponent extends Component {
 		};
 		
 	}
+
+
+    formItemLayout = {
+        labelCol: {
+            lg: { span: 2 },
+            sm: { span: 5 },
+        },
+        wrapperCol: {
+            lg: { span: 22 },
+            sm: { span: 12 },
+        },
+
+    };
+
 
   componentWillMount(){
 	  this.setState({
@@ -44,6 +58,12 @@ class TwoHandHouseComponent extends Component {
 			  { label: '90-110平', value: '90-110平' },
 			  { label: '110-130平', value: '110-130平' },
 			  { label: '150平以上', value: '150平以上'}
+			],
+		  	houseType:[
+                { label: '一室', value: '一室' },
+                { label: '二室', value: '二室' },
+                { label: '三室', value: '三室'},
+                { label: '四室', value: '四室' },
 			]
 		});
   }
@@ -61,32 +81,28 @@ class TwoHandHouseComponent extends Component {
 		
 		return (
 			<div style={{margin:'120px 250px 120px 250px',color:'#394042'}} >
-				<div id="filterBox" style={{margin:'0px 0px 35px 0px',background:'#F5F5F5',padding:'25px'}}>
-					<Row style={{height:'27px'}}>	
-							<Col span={1} style={{fontWeight:'bold'}}>售价</Col>
-							<Col span={22}>
-								<RadioGroup options={this.state.priceOptions} size="large"></RadioGroup>
-							</Col>
-							
-					</Row>
-					<Row style={{height:'27px'}}>	
-							<Col span={1} style={{fontWeight:'bold'}}>面积</Col>
-							<Col span={21}>
-								<RadioGroup options={this.state.areaOptions}></RadioGroup>
-							</Col>
-							
-					</Row>
-					<Row style={{height:'27px'}}>	
-							<Col span={1} style={{fontWeight:'bold'}}>户型</Col>
-							<Col span={21}>
-								<RadioGroup onChange={this.onChange} value={this.state.value}>
-									<Radio value={1}>一室</Radio>
-									<Radio value={2}>二室</Radio>
-									<Radio value={3}>三室</Radio>
-									<Radio value={4}>四室</Radio>
-								</RadioGroup>
-							</Col>  
-					</Row>
+
+				<div id="filterBox" style={{background:'#F5F5F5',padding:'25px'}}>
+					<Form>
+						<FormItem
+							{...this.formItemLayout}
+							label="售价"
+							style={{marginBottom:"3px"}}>
+							<RadioGroup options={this.state.priceOptions} size="large"></RadioGroup>
+						</FormItem>
+						<FormItem
+                            {...this.formItemLayout}
+							label="面积"
+							style={{marginBottom:"3px"}}>
+							<RadioGroup options={this.state.areaOptions} size="large"></RadioGroup>
+						</FormItem>
+						<FormItem
+                            {...this.formItemLayout}
+							label="户型"
+						>
+							<RadioGroup options={this.state.houseType} size="large"></RadioGroup>
+						</FormItem>
+					</Form>
 				</div>
 				<div id="123" style={{color:'#00ae66',fontSize:'22px',fontWeight:'bold',margin:'0px 0px 35px 0px'}}>共找到<span style={{color:'#00ae66',fontSize:22}}>72900</span>套上海二手房源</div>
 				<div id="sort" style={{border:'1px solid #F5F5F5'}}>
