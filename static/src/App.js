@@ -148,6 +148,30 @@ class App extends Component {
 							<Input placeholder="请在此输入您的密码" id="success" />
 						</FormItem>
 						<FormItem
+                            {...this.formItemLayout}
+							label="昵称"
+							hasFeedback
+							validateStatus="success"
+						>
+							<Input placeholder="请在此输入您的昵称" id="success" />
+						</FormItem>
+						<FormItem
+                            {...this.formItemLayout}
+							label="姓名"
+							hasFeedback
+							validateStatus="success"
+						>
+							<Input placeholder="请在此输入您的姓名" id="success" />
+						</FormItem>
+						<FormItem
+                            {...this.formItemLayout}
+							label="手机号"
+							hasFeedback
+							validateStatus="success"
+						>
+							<Input placeholder="请在此输入您的手机号" id="success" />
+						</FormItem>
+						<FormItem
                             {...this.formButtonLayout}
 						>
 							<Button>来个号</Button>
