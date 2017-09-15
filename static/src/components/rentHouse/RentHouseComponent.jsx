@@ -109,7 +109,7 @@ class RentHouseComponent extends Component {
               </div>
           </TabPane>
           <TabPane tab="地铁租房" key="2">
-          <div id="filterBox" style={{background:'#F5F5F5',padding:'20px'}}>
+          <div id="filterBox" style={{background:'#ffffff',padding:'20px'}}>
           <Form>
             <FormItem
               {...this.formItemLayout}
