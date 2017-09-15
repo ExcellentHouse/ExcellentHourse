@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TwoHandHouseComponent from './components/twoHandHouse/TwoHandHouseComponent';
 import RentHouseComponent from './components/rentHouse/RentHouseComponent';
 import SigninAndSignoutComponent from './components/userSigninAndSignout/SigninAndSignoutComponent';
+import User from './components/user/user';
 import { Row, Col } from 'antd';
 import 'antd/dist/antd.css';
 import './static/css/common.css';
@@ -200,6 +201,7 @@ class App extends Component {
 		  <Route path="/oneHandHouse" component={SigninAndSignoutComponent}/>
 		  <Route path="/twoHandHouse" component={TwoHandHouseComponent}/>
 		  <Route path="/rentHouse" component={RentHouseComponent}/>
+		  <Route path="/contact" component={User}/>
 		</div>
 	</Router>
       
