@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TwoHandHouseComponent from './components/twoHandHouse/TwoHandHouseComponent';
 import RentHouseComponent from './components/rentHouse/RentHouseComponent';
 import SigninAndSignoutComponent from './components/userSigninAndSignout/SigninAndSignoutComponent';
+import CommunityComponent from './components/community/CommunityComponent';
 import User from './components/user/user';
 import { Row, Col } from 'antd';
 import 'antd/dist/antd.css';
@@ -204,6 +205,9 @@ class App extends Component {
 						<Menu.Item key="rentHouse">
 							<Link to="/rentHouse" style={{color:'white'}}>租房</Link>
 						</Menu.Item>
+						<Menu.Item key="community">
+							<Link to="/community" style={{color:'white'}}>小区</Link>
+						</Menu.Item>
 
 						<Menu.Item key="2span" style={{width:'500px'}}></Menu.Item>
 
@@ -225,6 +229,7 @@ class App extends Component {
 					<Route path="/oneHandHouse" component={SigninAndSignoutComponent}/>
 					<Route path="/twoHandHouse" component={TwoHandHouseComponent}/>
 					<Route path="/rentHouse" component={RentHouseComponent}/>
+					<Route path="/community" component={CommunityComponent}/>
 					<Route path="/contact" component={User}/>
 				</div>
 			</Router>

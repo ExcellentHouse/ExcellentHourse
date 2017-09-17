@@ -22,6 +22,7 @@ class CommunityComponent extends Component {
             street:'',
             average:'',
             houseAge:'',
+            houseType:'',
             cityOptions:[],
             districtOptions:[],
             streetOptions:[],
@@ -61,36 +62,25 @@ class CommunityComponent extends Component {
                 })
             })
             .catch(e => console.log("Oops, error", e));
+
         fetch("/community/").then(response => response.json())
             .then(data => {
                 data = data['data'];
                 var communityList = data['communityList'];
-                var communityContent = [];
-                communityContent = communityList.map((item,i) => {
-                    console.log(i);
-                    return (<CommunityItemComponent key = {i} path={communityList[i]['path']} name={communityList[i]['name']} city={communityList[i]['area']['city']}
-                                                    discrict={communityList[i]['area']['discrict']}
-                                                    street={communityList[i]['area']['street']}
-                                                    average={communityList[i]['average']}
-                                                    houseNumber={communityList[i]['houseNumber']}
-                                                    builtYear={communityList[i]['builtYear']}
-                    />);
-                })
-                this.setState({
-                    communityContent:communityContent
-                })
+                this.solveCommunityList(communityList);
+
             })
             .catch(e => console.log("Oops, error", e));
 
 
         this.setState({
             averageOptions:[
-                { label: '200万以下', value: '0-200' },
-                { label: '200-300万', value: '200-300' },
-                { label: '300-400万', value: '300-400'},
-                { label: '400-500万', value: '400-500' },
-                { label: '500-600万', value: '500-600' },
-                { label: '600万以上', value: '600'}
+                { label: '5000以下', value: '0-5000' },
+                { label: '5000-8000元', value: '5000-8000' },
+                { label: '8000-12000元', value: '8000-12000'},
+                { label: '12000-15000元', value: '12000-15000' },
+                { label: '15000-20000元', value: '15000-20000' },
+                { label: '20000元以上', value: '20000'}
             ],
             houseAgeOptions:[
                 { label: '2年内', value: '0-2' },
@@ -102,6 +92,23 @@ class CommunityComponent extends Component {
             nullTest:[],
         });
     }
+
+    solveCommunityList(communityList){
+        var communityContent = [];
+        communityContent = communityList.map((item,i) => {
+            console.log(i);
+            return (<CommunityItemComponent key = {i} path={communityList[i]['path']} name={communityList[i]['name']} city={communityList[i]['area']['city']}
+                                            discrict={communityList[i]['area']['discrict']}
+                                            street={communityList[i]['area']['street']}
+                                            average={communityList[i]['average']}
+                                            houseNumber={communityList[i]['houseNumber']}
+                                            builtYear={communityList[i]['builtYear']}
+            />);
+        })
+        this.setState({
+            communityContent:communityContent
+        })
+    }
     filter(){
         var options = {
             city:this.state.city,
@@ -111,6 +118,22 @@ class CommunityComponent extends Component {
             houseAge:this.state.houseAge,
         }
         console.log(options);
+        var url = "/community/filter?";
+        for(var key in options){
+            if(options[key] == ''){
+                continue ;
+            }
+            url = url+key+"="+options[key]+"&";
+        }
+        console.log(url);
+        fetch(url, { method: 'GET', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', } }).then(response => response.json())
+            .then(data => {
+                data = data['data'];
+                var communityList = data['communityList'];
+                this.solveCommunityList(communityList);
+
+            })
+            .catch(e => console.log("Oops, error", e));
     }
 
 
