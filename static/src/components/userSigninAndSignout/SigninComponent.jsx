@@ -86,9 +86,8 @@ class SigninComponent extends Component {
                     console.log(nickname);
                     localStorage.token=token;
                     localStorage.nickname=nickname;
+                    this.props.ok();
                 }
-
-                // this.props.ok();
 
             })
 
