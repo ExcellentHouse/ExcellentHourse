@@ -3,6 +3,9 @@ import TwoHandHouseComponent from './components/twoHandHouse/TwoHandHouseCompone
 import RentHouseComponent from './components/rentHouse/RentHouseComponent';
 import SigninAndSignoutComponent from './components/userSigninAndSignout/SigninAndSignoutComponent';
 import CommunityComponent from './components/community/CommunityComponent';
+import SigninComponent from './components/userSigninAndSignout/SigninComponent'
+import SignupComponent from './components/userSigninAndSignout/SignupComponent'
+
 import User from './components/user/user';
 import { Row, Col } from 'antd';
 import 'antd/dist/antd.css';
@@ -27,8 +30,7 @@ class App extends Component {
         super();
         this.state={
             current: 'home',
-            signinVisible:false,
-            signupVisible:false
+            signinAndSignupVisible:false,
         }
     }
     componentWillMount(){
@@ -36,27 +38,13 @@ class App extends Component {
     }
 
 
-    handleSigninAndSignupCancle = (e) => {
+
+    triggerSigninAndSignup = () => {
         this.setState({
-            signinVisible:false,
-            signupVisible:false
+            signinAndSignupVisible:!this.state.signinAndSignupVisible
         });
     }
 
-    handleSignin = (e) => {
-        this.setState({
-            signinVisible:true,
-            signupVisible:false
-        });
-    }
-    handleSignup = (e) => {
-
-        console.log(e);
-        this.setState({
-            signinVisible:false,
-            signupVisible:true
-        });
-    }
 
 
 
@@ -74,114 +62,28 @@ class App extends Component {
         wrapperCol:{offset:5}
     }
 
+	test(){
 
+        if(this.state.signinAndSignupVisible){
+            return <SigninAndSignoutComponent triggerSigninAndSignup={this.triggerSigninAndSignup}  />
+        }else{
+            return null;
+        }
+	}
 
 
 
     render() {
+    	var com = this.test();
+
+
         return (
-			<Router>
+			<Router >
 
 
 
 
 				<div>
-					<Modal
-						title="大泽帅买房子之登录"
-						visible={this.state.signinVisible}
-						onCancel={this.handleSigninAndSignupCancle}
-						footer={[
-							<Row>
-								<Col span={2}><a onClick={this.handleSignup}>注册</a></Col>
-								<Col span={12}></Col>
-							</Row>
-                        ]}
-					>
-						<Form>
-							<FormItem
-                                {...this.formItemLayout}
-								label="用户名"
-								validateStatus="error"
-								help="账号或密码错误">
-								<Input placeholder="请在此输入您的用户名" id="error" />
-							</FormItem>
-							<FormItem
-                                {...this.formItemLayout}
-								label="密码"
-								hasFeedback
-								validateStatus="success"
-							>
-								<Input placeholder="请在此输入您的密码" id="success" />
-							</FormItem>
-							<FormItem
-                                {...this.formButtonLayout}
-							>
-								<Button>登录</Button>
-							</FormItem>
-
-						</Form>
-					</Modal>
-
-
-					<Modal
-						title="大泽帅买房子之注册"
-						visible={this.state.signupVisible}
-						onCancel={this.handleSigninAndSignupCancle}
-						footer={[
-							<Row>
-								<Col span={6}><a onClick={this.handleSignin}>有账号就快来登录呗</a></Col>
-								<Col span={12}></Col>
-							</Row>
-                        ]}
-					>
-						<Form>
-							<FormItem
-                                {...this.formItemLayout}
-								label="用户名"
-								validateStatus="error"
-								help="账号或密码错误">
-								<Input placeholder="请在此输入您的用户名" id="error" />
-							</FormItem>
-							<FormItem
-                                {...this.formItemLayout}
-								label="密码"
-								hasFeedback
-								validateStatus="success"
-							>
-								<Input placeholder="请在此输入您的密码" id="success" />
-							</FormItem>
-							<FormItem
-                                {...this.formItemLayout}
-								label="昵称"
-								hasFeedback
-								validateStatus="success"
-							>
-								<Input placeholder="请在此输入您的昵称" id="success" />
-							</FormItem>
-							<FormItem
-                                {...this.formItemLayout}
-								label="姓名"
-								hasFeedback
-								validateStatus="success"
-							>
-								<Input placeholder="请在此输入您的姓名" id="success" />
-							</FormItem>
-							<FormItem
-                                {...this.formItemLayout}
-								label="手机号"
-								hasFeedback
-								validateStatus="success"
-							>
-								<Input placeholder="请在此输入您的手机号" id="success" />
-							</FormItem>
-							<FormItem
-                                {...this.formButtonLayout}
-							>
-								<Button>来个号</Button>
-							</FormItem>
-						</Form>
-					</Modal>
-
 
 
 					<Menu
@@ -211,8 +113,9 @@ class App extends Component {
 
 						<Menu.Item key="2span" style={{width:'500px'}}></Menu.Item>
 
-						<Menu.Item key="inAndUp">
-							<Link to="/inAndUp" style={{color:'white'}} onClick={this.handleSignin}>登录/注册</Link>
+						<Menu.Item key="inAndUp" >
+							<span onClick={this.triggerSigninAndSignup}>登录/注册</span>
+
 						</Menu.Item>
 
 						<Menu.Item key="3span" style={{width:'30px'}}></Menu.Item>
@@ -222,6 +125,8 @@ class App extends Component {
 						</Menu.Item>
 
 					</Menu>
+					{com}
+
 
 					<hr/>
 
