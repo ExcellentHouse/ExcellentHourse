@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Radio,Form,Row, Col } from 'antd';
 import 'antd/dist/antd.css';
 import '../../static/css/rentHouse.css';
-import TwoHandHouseItemComponent from '../twoHandHouse/TwoHandHouseItemComponent';
+import TwoHandHouseItemComponent from '../secondHandHouse/SecondHandHouseItemComponent';
 import {
   BrowserRouter as Router,
   Route,

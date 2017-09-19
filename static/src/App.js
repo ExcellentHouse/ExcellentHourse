@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TwoHandHouseComponent from './components/twoHandHouse/TwoHandHouseComponent';
+import SecondHandHouseComponent from './components/secondHandHouse/SecondHandHouseComponent';
 import RentHouseComponent from './components/rentHouse/RentHouseComponent';
 import SigninAndSignoutComponent from './components/userSigninAndSignout/SigninAndSignoutComponent';
 import CommunityComponent from './components/community/CommunityComponent';
@@ -100,8 +100,8 @@ class App extends Component {
 							<Link to="/oneHandHouse" style={{color:'white'}}>新房</Link>
 						</Menu.Item>
 
-						<Menu.Item key="twoHandHouse">
-							<Link to="/twoHandHouse" style={{color:'white'}}>二手房</Link>
+						<Menu.Item key="secondHandHouse">
+							<Link to="/secondHandHouse" style={{color:'white'}}>二手房</Link>
 						</Menu.Item>
 
 						<Menu.Item key="rentHouse">
@@ -132,7 +132,7 @@ class App extends Component {
 
 					<Route exact path="/" component={Home}/>
 					<Route path="/oneHandHouse" component={SigninAndSignoutComponent}/>
-					<Route path="/twoHandHouse" component={TwoHandHouseComponent}/>
+					<Route path="/secondHandHouse" component={SecondHandHouseComponent}/>
 					<Route path="/rentHouse" component={RentHouseComponent}/>
 					<Route path="/community" component={CommunityComponent}/>
 					<Route path="/contact" component={User}/>
