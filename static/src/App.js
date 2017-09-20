@@ -4,10 +4,10 @@ import RentHouseComponent from './components/rentHouse/RentHouseComponent';
 import SigninAndSignoutComponent from './components/userSigninAndSignout/SigninAndSignoutComponent';
 import CommunityComponent from './components/community/CommunityComponent';
 
-import Logout from './components/user/Logout';
 
+import Logout from './components/user/Logout';
 import User from './components/user/User';
-import { Row, Col } from 'antd';
+import { Row, Col } from 'antd';	
 import 'antd/dist/antd.css';
 import './static/css/common.css';
 import {
@@ -16,12 +16,31 @@ import {
     Link,
     BrowserRouter
 } from 'react-router-dom';
+
+
+
+
+
+
 import { Modal} from 'antd';
 import { Menu, Icon } from 'antd';
+
+
+
+
+
+
 import { Form,Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
+
+
+
+
+
+
+
 
 class App extends Component {
 
@@ -97,7 +116,7 @@ class App extends Component {
             personal = (
 				<SubMenu key="sub4" title={<span><span>{this.state.nickname}</span></span>}>
 					<Menu.Item key="9">
-                        <Link to="/user" >主页</Link>
+                        <Link to="/user/profile" >主页</Link>
                     </Menu.Item>
 					<Menu.Item key="10">
                         <span onClick={this.logout}>
