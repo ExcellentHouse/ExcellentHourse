@@ -3,17 +3,18 @@ import SecondHandHouseComponent from './components/secondHandHouse/SecondHandHou
 import RentHouseComponent from './components/rentHouse/RentHouseComponent';
 import SigninAndSignoutComponent from './components/userSigninAndSignout/SigninAndSignoutComponent';
 import CommunityComponent from './components/community/CommunityComponent';
-import SigninComponent from './components/userSigninAndSignout/SigninComponent'
-import SignupComponent from './components/userSigninAndSignout/SignupComponent'
 
-import User from './components/user/user';
+import Logout from './components/user/Logout';
+
+import User from './components/user/User';
 import { Row, Col } from 'antd';
 import 'antd/dist/antd.css';
 import './static/css/common.css';
 import {
     BrowserRouter as Router,
     Route,
-    Link
+    Link,
+    BrowserRouter
 } from 'react-router-dom';
 import { Modal} from 'antd';
 import { Menu, Icon } from 'antd';
@@ -28,13 +29,19 @@ class App extends Component {
 
     constructor(){
         super();
+        this.logout = this.logout.bind(this);
+
         this.state={
             current: 'home',
+			nickname:null,
             signinAndSignupVisible:false,
         }
     }
     componentWillMount(){
 
+		if(localStorage.nickname != null){
+			this.setState({nickname:localStorage.nickname})
+		}
     }
 
 
@@ -43,6 +50,16 @@ class App extends Component {
         this.setState({
             signinAndSignupVisible:!this.state.signinAndSignupVisible
         });
+        if(localStorage.nickname != null){
+            this.setState({nickname:localStorage.nickname})
+        }
+
+    }
+    logout(){
+        localStorage.clear();
+        this.setState({
+            nickname:null,
+        })
     }
 
 
@@ -75,6 +92,28 @@ class App extends Component {
 
     render() {
     	var com = this.test();
+		var personal;
+    	if(this.state.nickname != null){
+            personal = (
+				<SubMenu key="sub4" title={<span><span>{this.state.nickname}</span></span>}>
+					<Menu.Item key="9">
+                        <Link to="/user" >主页</Link>
+                    </Menu.Item>
+					<Menu.Item key="10">
+                        <span onClick={this.logout}>
+							<Link to="/logout" >注销</Link>
+                        </span>
+
+                    </Menu.Item>
+				</SubMenu>
+			)
+		}else{
+            personal = (
+            	<Menu.Item key="inAndUp" >
+					<span onClick={this.triggerSigninAndSignup}>登录/注册</span>;
+				</Menu.Item>
+			);
+		}
 
 
         return (
@@ -113,10 +152,8 @@ class App extends Component {
 
 						<Menu.Item key="2span" style={{width:'500px'}}></Menu.Item>
 
-						<Menu.Item key="inAndUp" >
-							<span onClick={this.triggerSigninAndSignup}>登录/注册</span>
 
-						</Menu.Item>
+						{personal}
 
 						<Menu.Item key="3span" style={{width:'30px'}}></Menu.Item>
 
@@ -136,6 +173,9 @@ class App extends Component {
 					<Route path="/rentHouse" component={RentHouseComponent}/>
 					<Route path="/community" component={CommunityComponent}/>
 					<Route path="/contact" component={User}/>
+                    <Route path="/user" component={User} />
+					<Route path="/logout" component={Logout} />
+
 				</div>
 			</Router>
 

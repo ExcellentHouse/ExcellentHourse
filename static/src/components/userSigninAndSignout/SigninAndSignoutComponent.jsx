@@ -69,7 +69,7 @@ class SigninAndSignoutComponent extends Component{
                         </Row>
                     ]}
                 >
-                    <SigninComponent />
+                    <SigninComponent ok={this.handleSigninAndSignupCancel}/>
                 </Modal>
 
                 <Modal

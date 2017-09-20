@@ -12,8 +12,21 @@ function callback(key) {
 }
 
 
-class user extends Component{
-	
+class User extends Component{
+
+
+  componentDidMount(){
+    var url = "/check/jwt/"+localStorage.token;
+    alert("213123");
+    fetch(url, { method: 'GET', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', } }).then(response => response.json())
+        .then(data => {
+          alert(data['data']['isExpired']);
+        })
+        .catch(e => console.log("Oops, error", e));
+
+
+  }
+
   state = {
     collapsed: false,
   }
@@ -75,4 +88,4 @@ class user extends Component{
     );
   }
 }
-export default user;
+export default User;
