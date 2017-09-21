@@ -1,157 +1,70 @@
 import '../../static/css/twoHandHouse.css';
 import 'antd/dist/antd.css';
 import React, { Component } from 'react';
-import { Upload, Icon, Modal,Form,Radio,Row, Col, Menu,Input, Button, Checkbox } from 'antd';
-
+import { Upload, Icon, Modal,Form,Radio,Row, Col, Menu,Input, Button, Checkbox,InputNumber } from 'antd';
+const { TextArea } = Input;
 class InputSecondHouseComponent extends Component {
 
-    formItemLayout = {
-        labelCol: {
-            xs: { span: 24 },
-            sm: { span: 5 },
-        },
-        wrapperCol: {
-            xs: { span: 24 },
-            sm: { span: 12 },
-        },
-    };
-    formButtonLayout = {
-        wrapperCol:{offset:5}
-    }
 
-
-    componentWillMount(){
-        fetch("/people/profile/"+localStorage.username).then(response => response.json())
-            .then(data => {
-                var personalInformation = data['data']['personalInformation'];
-
-                this.setState({
-                    username:personalInformation['username'],
-                    nickname:personalInformation['nickname'],
-                    name:personalInformation['name'],
-                    email:personalInformation['email'],
-                    sex:personalInformation['sex'],
-                    avatar:personalInformation['avatar'],
-                    idNumber:personalInformation['idNumber'],
-                    fileList: [{
-                        uid: -1,
-                        name: 'xxx.png',
-                        status: 'done',
-                        url: personalInformation['avatar'],
-                    }],
-                })
-                console.log(this.state);
-            })
-            .catch(e => console.log("Oops, error", e));
-    }
-
-
-
-    state = {
-        username:'',
-        nickname:'',
-        name:'',
-        email:'',
-        sex:'',
-        avatar:'',
-        idNumber:'',
-        previewVisible: false,
-        previewImage: '',
-        fileList: [{
-            uid: -1,
-            name: 'xxx.png',
-            status: 'done',
-            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        }],
-    };
-
-    handleCancel = () => this.setState({ previewVisible: false })
-
-    handlePreview = (file) => {
-        this.setState({
-            previewImage: file.url || file.thumbUrl,
-            previewVisible: true,
-        });
-    }
-
-    handleChange = ({ fileList }) => this.setState({ fileList })
 
     render() {
-        const { previewVisible, previewImage, fileList } = this.state;
-        const uploadButton = (
-            <div>
-                <Icon type="plus" />
-                <div className="ant-upload-text">Upload</div>
-            </div>
-        );
+
         return (
-            <div className="clearfix">
-                <Form>
-                    <Form.Item
-                        {...this.formItemLayout}
-                        label="头像"
-                    >
+            <div>
+                <Row>
+                    <Col span={2}>有无电梯:</Col>
+                    <Col >
+                        <Radio.Group >
+                            <Radio value="有">有</Radio>
+                            <Radio value="无">无</Radio>
+                        </Radio.Group>
+                    </Col>
 
-                        <Upload
-                            action="//jsonplaceholder.typicode.com/posts/"
-                            listType="picture-card"
-                            fileList={fileList}
-                            onPreview={this.handlePreview}
-                            onChange={this.handleChange}
-                        >
-                            {fileList.length >= 1 ? null : uploadButton}
-                        </Upload>
-                    </Form.Item>
-                    <Form.Item
-                        {...this.formItemLayout}
-                        label="用户名"
-                        hasFeedback
-                        validateStatus="success"
-                    >
-                        <Input value={this.state.username} onChange={this.sexChange} />
-                    </Form.Item>
-                    <Form.Item
-                        {...this.formItemLayout}
-                        label="昵称"
-                        hasFeedback
-                        validateStatus="success"
-                    >
-                        <Input value={this.state.nickname} onChange={this.sexChange} />
-                    </Form.Item>
-                    <Form.Item
-                        {...this.formItemLayout}
-                        label="真实姓名"
-                        hasFeedback
-                        validateStatus="success"
-                    >
-                        <Input value={this.state.name} onChange={this.sexChange} />
-                    </Form.Item>
-                    <Form.Item
-                        {...this.formItemLayout}
-                        label="email"
-                        hasFeedback
-                        validateStatus="success"
-                    >
-                        <Input value={this.state.email} onChange={this.sexChange} />
-                    </Form.Item>
-                    <Form.Item
-                        {...this.formItemLayout}
-                        label="身份证号"
-                        hasFeedback
-                        validateStatus="success"
-                    >
-                        <Input value={this.state.idNumber} onChange={this.sexChange} />
-                    </Form.Item>
+                </Row>
 
-                </Form>
-
-
-                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                    <img alt="example" style={{ width: '100%' }} src={previewImage} />
-                </Modal>
-
-
+                <Row>
+                    <Col span={2}>基础信息:</Col>
+                    <Col span={2}>
+                        <Input  addonAfter="平" defaultValue="0" />
+                    </Col>
+                    <Col span={1}></Col>
+                    <Col span={2}>
+                        <Input  addonAfter="室" defaultValue="0" />
+                    </Col>
+                    <Col span={1}></Col>
+                    <Col span={2}>
+                        <Input  addonAfter="厅" defaultValue="0" />
+                    </Col>
+                    <Col span={1}></Col>
+                    <Col span={2}>
+                        <Input  addonAfter="卫" defaultValue="0" />
+                    </Col>
+                    <Col span={1}></Col>
+                    <Col span={2}>
+                        <Input  addonAfter="层" defaultValue="0" />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={2}>详细地址:</Col>
+                    <Col span={12}>
+                        <TextArea rows={4} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={2}>备注:</Col>
+                    <Col span={12}>
+                        <TextArea rows={4} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={2}>竣工时间:</Col>
+                    <Col span={2}>
+                        <Input  addonAfter="年" defaultValue="0" />
+                    </Col>
+                </Row>
             </div>
+
+
         );
     }
 }
