@@ -13,7 +13,7 @@ class FooterComponent extends React.Component {
     
 
     return (
-      <footer style={{bottom:'0px',backgroundColor:'#000000' ,color:'#999',lineHeight:'20px',fontSize:'12px',padding:'20px',marginBottom:0,fontFamily: "Hiragino Sans GB"}}>
+      <footer style={{bottom:'0px',backgroundColor:'#333' ,color:'#999',lineHeight:'20px',fontSize:'12px',padding:'20px',marginBottom:0,fontFamily: "Hiragino Sans GB"}}>
         <div className='container'>
           <div className='row'>
             <div className='col-sm-5'>
