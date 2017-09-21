@@ -4,6 +4,7 @@ import 'antd/dist/antd.css';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import ProfileComponent from './ProfileComponent';
 import MySecondHouseComponent from './MySecondHouseComponent';
+import InputSecondHouseComponent from './InputSecondHouseComponent';
 import {
     BrowserRouter as Router,
     Route,
@@ -57,7 +58,9 @@ class User extends Component{
                                 <Menu.Item key="mySecondHouse">
                                     <Link to="/user/mySecondHouse" style={{color:'white'}}>我的二手房</Link>
                                 </Menu.Item>
-                                <Menu.Item key="sellSecondHouse">发布二手房</Menu.Item>
+                                <Menu.Item key="inputSecondHouse">
+                                    <Link to="/user/inputSecondHouse" style={{color:'white'}}>发布二手房</Link>
+                                </Menu.Item>
                             </SubMenu>
                             <SubMenu key="checkInformation" title={<span><Icon type="notification" />审核信息</span>}>
                                 <Menu.Item key="secondHandCheck">二手房审核</Menu.Item>
@@ -68,6 +71,7 @@ class User extends Component{
                         <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
                             <Route exact path="/user/profile" component={ProfileComponent}/>
                             <Route exact path="/user/mySecondHouse" component={MySecondHouseComponent}/>
+                            <Route exact path="/user/inputSecondHouse" component={InputSecondHouseComponent}/>
                         </Content>
                     </Layout>
                 </Layout>
