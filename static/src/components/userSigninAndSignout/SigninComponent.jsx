@@ -82,10 +82,12 @@ class SigninComponent extends Component {
                     console.log(data);
                     var token = data['data']['token'];
                     var nickname = data['data']['nickname'];
+                    var username = data['data']['username'];
                     console.log(token);
                     console.log(nickname);
                     localStorage.token=token;
                     localStorage.nickname=nickname;
+                    localStorage.username=username;
                     this.props.ok();
                 }
 

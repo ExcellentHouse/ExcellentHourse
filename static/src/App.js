@@ -129,7 +129,7 @@ class App extends Component {
 		}else{
             personal = (
             	<Menu.Item key="inAndUp" >
-					<span onClick={this.triggerSigninAndSignup}>登录/注册</span>;
+					<span onClick={this.triggerSigninAndSignup}>登录/注册</span>
 				</Menu.Item>
 			);
 		}
