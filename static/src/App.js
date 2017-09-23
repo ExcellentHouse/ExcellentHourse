@@ -155,9 +155,7 @@ class App extends Component {
 							<Link to="/" style={{color:'white'}}>主页</Link>
 						</Menu.Item>
 
-						<Menu.Item key="oneHandHouse">
-							<Link to="/oneHandHouse" style={{color:'white'}}>新房</Link>
-						</Menu.Item>
+
 
 						<Menu.Item key="secondHandHouse">
 							<Link to="/secondHandHouse" style={{color:'white'}}>二手房</Link>
@@ -188,7 +186,6 @@ class App extends Component {
 					<hr/>
 
 					<Route exact path="/" component={Home}/>
-					<Route path="/oneHandHouse" component={SigninAndSignoutComponent}/>
 					<Route path="/secondHandHouse" component={SecondHandHouseComponent}/>
 					<Route path="/rentHouse" component={RentHouseComponent}/>
 					<Route path="/community" component={CommunityComponent}/>
