@@ -9,19 +9,19 @@ const RadioGroup = Radio.Group;
 
 class SigninComponent extends Component {
 
-    formItemLayout = {
-        labelCol: {
-            xs: { span: 24 },
-            sm: { span: 5 },
-        },
-        wrapperCol: {
-            xs: { span: 24 },
-            sm: { span: 12 },
-        },
-    };
-    formButtonLayout = {
-        wrapperCol:{offset:5}
-    }
+        formItemLayout = {
+            labelCol: {
+                xs: { span: 24 },
+                sm: { span: 5 },
+            },
+            wrapperCol: {
+                xs: { span: 24 },
+                sm: { span: 12 },
+            },
+        };
+        formButtonLayout = {
+            wrapperCol:{offset:5}
+        }
 
     constructor(){
         super();
