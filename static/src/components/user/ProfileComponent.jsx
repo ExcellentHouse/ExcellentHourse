@@ -56,12 +56,7 @@ class ProfileComponent extends Component {
         idNumber:'',
         previewVisible: false,
         previewImage: '',
-        fileList: [{
-            uid: -1,
-            name: 'xxx.png',
-            status: 'done',
-            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        }],
+        fileList: [],
     };
 
     handleCancel = () => this.setState({ previewVisible: false })

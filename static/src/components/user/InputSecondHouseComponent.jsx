@@ -27,7 +27,9 @@ class InputSecondHouseComponent extends Component {
     }
 
     handleCommunitySelectChange(value) {
-        console.log(`selected ${value}`);
+        this.setState({
+            community_id:value
+        })
     }
 
 
@@ -35,35 +37,58 @@ class InputSecondHouseComponent extends Component {
     constructor(){
         super();
         this.state = {
+            fileList: [],
+            city:'',
+            district:'',
+            street:'',
+            community_id:'',
+            detailedAddress:'',
+            price:'',
+            area:'',
+            room:'',
+            hall:'',
+            washroom:'',
+            floor:'',
+            builtYear:'',
+            hasElevator:'',
+            remark:'',
             previewVisible: false,
             previewImage: '',
-            fileList: [],
             areaOptions:[],
             communityOptions:[],
             defaultCommunity:''
         };
         this.areaCascaderChange = this.areaCascaderChange.bind(this);
-        this.testClick = this.testClick.bind(this);
+        this.input = this.input.bind(this);
+        this.handleCommunitySelectChange = this.handleCommunitySelectChange.bind(this);
 
 
     }
 
 
     areaCascaderChange(value) {
-
-        fetch(`/community/filter?city=${value[0]}&district=${value[1]}&street=${value[2]}`).then(response => response.json())
-            .then(data => {
-                var communityList = data['data']['communityList'];
-                var communityContent = communityList.map((item,i) => {
-                    return (<Select.Option key = {i} value={item['id']}>{item['name']}</Select.Option>);
-                })
+        this.setState({
+            city:value[0],
+            district:value[1],
+            street:value[2]
+        },() => {
+            fetch(`/community/filter?city=${value[0]}&district=${value[1]}&street=${value[2]}`).then(response => response.json())
+                .then(data => {
+                    var communityList = data['data']['communityList'];
+                    var communityContent = communityList.map((item,i) => {
+                        return (<Select.Option key = {i} value={item['id']}>{item['name']}</Select.Option>);
+                    })
 
                     this.setState({
                         communityOptions:communityContent
                     })
 
-            })
-            .catch(e => console.log("Oops, error", e));
+                })
+                .catch(e => console.log("Oops, error", e));
+        });
+        console.log(this.state);
+
+
     }
 
 
@@ -89,24 +114,26 @@ class InputSecondHouseComponent extends Component {
         this.setState({ fileList })
     }
 
-    testClick(){
-
-        const { fileList } = this.state;
-        console.log(fileList);
+    input(){
         const formData = new FormData();
-        // formData.append('file',fileList[0]);
-        // console.log(fileList[0]);
-        fileList.forEach((file) => {
-            formData.append('files[]', file['originFileObj']);
+
+
+
+
+        this.state.fileList.forEach((file) => {
+            formData.append('files', file['originFileObj']);
         });
-        formData.append('secondHandHouseInputDTO',{one:'1',two:'2',three:'3'});
+        formData.append('one',123);
+
+
         fetch("/secondHandHouse/batchupload", {
             method: "POST",
-                credentials: "include",
-                headers: {
+            credentials: "include",
+            headers: {
             },
-            body: formData
+            body:formData
         })
+
     }
 
 
@@ -115,6 +142,7 @@ class InputSecondHouseComponent extends Component {
 
 
     render(){
+
         const { previewVisible, previewImage, fileList } = this.state;
         const uploadButton = (
             <div>
@@ -149,7 +177,7 @@ class InputSecondHouseComponent extends Component {
                         <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
                             <img alt="example" style={{ width: '100%' }} src={previewImage} />
                         </Modal>
-                        <Button onClick={this.testClick}>test</Button>
+                        <Button onClick={this.input}>test</Button>
                     </Form.Item>
 
 
@@ -178,15 +206,16 @@ class InputSecondHouseComponent extends Component {
                     <Form.Item
                         {...this.formItemLayout}
                         label="详细地址:"
+
                     >
-                        <TextArea rows={2} />
+                        <TextArea rows={2} onChange={(value) => {this.setState({detailedAddress:value.target.value})}} />
                     </Form.Item>
                     <Form.Item
                         {...this.formItemLayout}
                         label="价格:"
                     >
                         <Col span={3}>
-                            <Input  addonAfter="万" defaultValue="0" />
+                            <Input  addonAfter="万" defaultValue="0" onChange={(e) => {this.setState({price:e.target.value})}} />
                         </Col>
                     </Form.Item>
                     <Form.Item
@@ -194,34 +223,36 @@ class InputSecondHouseComponent extends Component {
                         label="基础信息:"
                     >
                         <Col span={3}>
-                            <Input  addonAfter="平" defaultValue="0" />
+                            <Input  addonAfter="平" defaultValue="0" onChange={(e) => {this.setState({area:e.target.value})}} />
                         </Col>
                         <Col span={1}></Col>
                         <Col span={3}>
-                            <Input  addonAfter="室" defaultValue="0" />
+                            <Input  addonAfter="室" defaultValue="0" onChange={(e) => {this.setState({room:e.target.value})}} />
                         </Col>
                         <Col span={1}></Col>
                         <Col span={3}>
-                            <Input  addonAfter="厅" defaultValue="0" />
+                            <Input  addonAfter="厅" defaultValue="0" onChange={(e) => {this.setState({hall:e.target.value})}} />
                         </Col>
                         <Col span={1}></Col>
                         <Col span={3}>
-                            <Input  addonAfter="卫" defaultValue="0" />
+                            <Input  addonAfter="卫" defaultValue="0" onChange={(e) => {this.setState({washroom:e.target.value})}} />
                         </Col>
                         <Col span={1}></Col>
                         <Col span={3}>
-                            <Input  addonAfter="层" defaultValue="0" />
+                            <Input  addonAfter="层" defaultValue="0" onChange={(e) => {this.setState({floor:e.target.value})}} />
                         </Col>
                         <Col span={1}></Col>
                         <Col span={4}>
-                            <Input  addonAfter="年竣工" defaultValue="0" />
+                            <Input  addonAfter="年竣工" defaultValue="0" onChange={(e) => {this.setState({builtYear:e.target.value})}} />
                         </Col>
                     </Form.Item>
                     <Form.Item
                         {...this.formItemLayout}
                         label="有无电梯:"
                     >
-                        <Radio.Group >
+                        <Radio.Group onChange={ (e) => {
+                            this.setState({hasElevator:e.target.value})
+                        }}>
                             <Radio value="有">有</Radio>
                             <Radio value="无">无</Radio>
                         </Radio.Group>
@@ -230,7 +261,12 @@ class InputSecondHouseComponent extends Component {
                         {...this.formItemLayout}
                         label="备注:"
                     >
-                        <TextArea rows={2} />
+                        <TextArea rows={2} onChange={(value) => {this.setState({remark:value.target.value})}} />
+                    </Form.Item>
+                    <Form.Item
+                        {...this.formButtonLayout}
+                    >
+                        <Button onClick={ this.input}>上传</Button>
                     </Form.Item>
                 </Form>
 
