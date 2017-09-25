@@ -3,6 +3,8 @@ import SecondHandHouseComponent from './components/secondHandHouse/SecondHandHou
 import RentHouseComponent from './components/rentHouse/RentHouseComponent';
 import SigninAndSignoutComponent from './components/userSigninAndSignout/SigninAndSignoutComponent';
 import CommunityComponent from './components/community/CommunityComponent';
+import BackComponent from './components/back/BackComponent';
+
 import FooterCompent from './components/footer/FooterCompent'
 
 
@@ -189,7 +191,7 @@ class App extends Component {
 					<Route path="/secondHandHouse" component={SecondHandHouseComponent}/>
 					<Route path="/rentHouse" component={RentHouseComponent}/>
 					<Route path="/community" component={CommunityComponent}/>
-					<Route path="/contact" component={User}/>
+					<Route path="/contact" component={BackComponent}/>
                     <Route path="/user" component={User} />
 					<Route path="/logout" component={Logout} />
 
