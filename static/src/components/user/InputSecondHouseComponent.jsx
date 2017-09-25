@@ -117,14 +117,15 @@ class InputSecondHouseComponent extends Component {
     input(){
         const formData = new FormData();
 
+        var data = {one:123,'files':[this.state.fileList[0]['originFileObj']]}
 
-
-
-        this.state.fileList.forEach((file) => {
-            formData.append('files', file['originFileObj']);
-        });
+        // this.state.fileList.forEach((file) => {
+        //     formData.append('files', file['originFileObj']);
+        // });
         formData.append('one',123);
-
+        // var request = new XMLHttpRequest();
+        // // request.open("POST", "/secondHandHouse/batchupload");
+        // // request.send(formData);
 
         fetch("/secondHandHouse/batchupload", {
             method: "POST",
