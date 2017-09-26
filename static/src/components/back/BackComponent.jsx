@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
+import AddAdmin from './AddAdmin';
+import DeleteAdmin from './DeleteAdmin';
+
 
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import {
@@ -44,10 +47,10 @@ class BackComponent extends Component{
                         >
                             <SubMenu key="people" title={<span><Icon type="user" />用户管理</span>}>
                                 <Menu.Item key="addUser">
-                                    <Link to="/user/profile" style={{color:'white'}}>增加用户</Link>
+                                    <Link to="/admin/addAdmin" style={{color:'white'}}>增加管理员</Link>
                                 </Menu.Item>
                                 <Menu.Item key="deleteUser">
-                                    <Link to="/user/profile" style={{color:'white'}}>删除用户</Link>
+                                    <Link to="/admin/deleteAdmin" style={{color:'white'}}>删除管理员</Link>
                                 </Menu.Item>
                             </SubMenu>
                             <SubMenu key="myHouse" title={<span><Icon type="laptop" />房源审核</span>}>
@@ -68,6 +71,9 @@ class BackComponent extends Component{
                     </Sider>
                     <Layout style={{ padding: '0 24px 24px' }}>
                         <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
+                            <Route exact path="/admin/addAdmin" component={AddAdmin}/>
+                            <Route exact path="/admin/deleteAdmin" component={DeleteAdmin}/>
+
                         </Content>
                     </Layout>
                 </Layout>
