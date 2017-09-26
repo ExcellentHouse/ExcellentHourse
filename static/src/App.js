@@ -3,16 +3,10 @@ import SecondHandHouseComponent from './components/secondHandHouse/SecondHandHou
 import RentHouseComponent from './components/rentHouse/RentHouseComponent';
 import SigninAndSignoutComponent from './components/userSigninAndSignout/SigninAndSignoutComponent';
 import CommunityComponent from './components/community/CommunityComponent';
-<<<<<<< HEAD
 import FooterCompent from './components/footer/FooterCompent';
 import FindHouseComponent from './components/FindHouseComponent/FindHouseComponent' ;
 import NavigateComponent from './components/NavigateComponent/NavigateComponent'
-=======
 import BackComponent from './components/back/BackComponent';
-
-import FooterCompent from './components/footer/FooterCompent'
->>>>>>> 987d37fd9324b4614ee21125af5a25665d72f2b2
-
 
 import Logout from './components/user/Logout';
 import User from './components/user/User';
