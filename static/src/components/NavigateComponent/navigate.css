@@ -1,0 +1,28 @@
+@import '~antd/dist/antd.css';
+.header{
+  background: url('../../image/bg.jpg') no-repeat;
+  width:100%;
+  height:480px;
+  margin-top:0px;
+}
+.Reglog{
+	line-height: 20px;
+	font-size: 15px;
+	margin-left: 85%;
+	padding-top:10px;
+}
+.title{
+	margin-top: 150px;
+	margin-left: 33%;
+	line-height: 60px;
+	font-size: 50px;
+	color:white;
+}
+.search{
+	margin-top: 20px;
+	margin-left: 36%;
+}
+
+.title1 {
+	background: url('../../image/title1.jpg') no-repeat;
+}

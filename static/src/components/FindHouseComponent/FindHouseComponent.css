@@ -1,0 +1,19 @@
+@import '~antd/dist/antd.css';
+.find{
+	width: 100%
+}
+
+
+.title1 {
+	background: url('../../image/title1.jpg');
+	width:100%;
+  	height:480px;
+ 	margin-top:0px;
+}
+
+.title2 {
+	background: url('../../image/title2.jpg');
+	width:100%;
+  	height:550px;
+ 	margin-top:0px;
+}

@@ -3,7 +3,9 @@ import SecondHandHouseComponent from './components/secondHandHouse/SecondHandHou
 import RentHouseComponent from './components/rentHouse/RentHouseComponent';
 import SigninAndSignoutComponent from './components/userSigninAndSignout/SigninAndSignoutComponent';
 import CommunityComponent from './components/community/CommunityComponent';
-import FooterCompent from './components/footer/FooterCompent'
+import FooterCompent from './components/footer/FooterCompent';
+import FindHouseComponent from './components/FindHouseComponent/FindHouseComponent' ;
+import NavigateComponent from './components/NavigateComponent/NavigateComponent'
 
 
 import Logout from './components/user/Logout';
@@ -145,6 +147,7 @@ class App extends Component {
 				<div>
 
 
+
 					<Menu
 						selectedKeys={[this.state.current]}
 						mode="horizontal"
@@ -152,7 +155,7 @@ class App extends Component {
 						<Menu.Item key="1span" style={{width:'300px'}}></Menu.Item>
 
 						<Menu.Item key="home" >
-							<Link to="/" style={{color:'white'}}>主页</Link>
+							<Link to="/home" style={{color:'white'}}>主页</Link>
 						</Menu.Item>
 
 
@@ -180,12 +183,13 @@ class App extends Component {
 						</Menu.Item>
 
 					</Menu>
+					
 					{com}
 
 
-					<hr/>
-
-					<Route exact path="/" component={Home}/>
+					<hr/>					
+					<Route path="/home" component={NavigateComponent}/>
+					<Route path="/home" component={FindHouseComponent}/>
 					<Route path="/secondHandHouse" component={SecondHandHouseComponent}/>
 					<Route path="/rentHouse" component={RentHouseComponent}/>
 					<Route path="/community" component={CommunityComponent}/>
@@ -197,6 +201,7 @@ class App extends Component {
 					<div>
 						<FooterCompent />
 					</div>
+
 				</div>
 			</Router>
 
