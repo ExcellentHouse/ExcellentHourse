@@ -178,7 +178,7 @@ class App extends Component {
 						<Menu.Item key="3span" style={{width:'30px'}}></Menu.Item>
 
 						<Menu.Item key="contact" >
-							<Link to="/contact" style={{color:'white'}}>123456789</Link>
+							<Link to="/admin" style={{color:'white'}}>123456789</Link>
 						</Menu.Item>
 
 					</Menu>
@@ -191,7 +191,7 @@ class App extends Component {
 					<Route path="/secondHandHouse" component={SecondHandHouseComponent}/>
 					<Route path="/rentHouse" component={RentHouseComponent}/>
 					<Route path="/community" component={CommunityComponent}/>
-					<Route path="/contact" component={BackComponent}/>
+					<Route path="/admin" component={BackComponent}/>
                     <Route path="/user" component={User} />
 					<Route path="/logout" component={Logout} />
 
