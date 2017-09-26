@@ -179,7 +179,7 @@ class App extends Component {
 						<Menu.Item key="3span" style={{width:'30px'}}></Menu.Item>
 
 						<Menu.Item key="contact" >
-							<Link to="/admin" style={{color:'white'}}>123456789</Link>
+							<Link to="/admin" style={{color:'white'}}>后台管理</Link>
 						</Menu.Item>
 
 					</Menu>

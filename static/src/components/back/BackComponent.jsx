@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import AddAdmin from './AddAdmin';
 import DeleteAdmin from './DeleteAdmin';
-
+import CheckSecondHandHouse from './CheckSecondHandHouse'
 
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import {
@@ -55,11 +55,9 @@ class BackComponent extends Component{
                             </SubMenu>
                             <SubMenu key="myHouse" title={<span><Icon type="laptop" />房源审核</span>}>
                                 <Menu.Item key="mySecondHouse">
-                                    <Link to="/user/mySecondHouse" style={{color:'white'}}>审核二手房</Link>
+                                    <Link to="/admin/checkSecondHandHouse" style={{color:'white'}}>审核二手房</Link>
                                 </Menu.Item>
-                                <Menu.Item key="inputSecondHouse">
-                                    <Link to="/user/inputSecondHouse" style={{color:'white'}}>发布二手房</Link>
-                                </Menu.Item>
+
                             </SubMenu>
                             <SubMenu key="checkInformation" title={<span><Icon type="notification" />小区管理</span>}>
                                 <Menu.Item key="secondHandCheck">添加小区</Menu.Item>
@@ -73,6 +71,8 @@ class BackComponent extends Component{
                         <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
                             <Route exact path="/admin/addAdmin" component={AddAdmin}/>
                             <Route exact path="/admin/deleteAdmin" component={DeleteAdmin}/>
+                            <Route exact path="/admin/checkSecondHandHouse" component={CheckSecondHandHouse}/>
+
 
                         </Content>
                     </Layout>

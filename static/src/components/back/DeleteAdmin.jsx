@@ -27,77 +27,42 @@ class AddAdmin extends Component {
     }
 
 
-    input(){
-        var data = {
-            username:this.state.username,
-            password:this.state.password,
-            nickname:this.state.nickname,
-            email:this.state.email,
-            name:this.state.name,
-            idNumber:this.state.idNumber,
-            sex:this.state.sex,
-        }
-
-
-        fetch('/admin/add', {
-            method: 'POST',
-            headers: {
-                withCredientials:true,
-                'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: JSON.stringify(data)
-        }).then(response => response.json())
-            .then(data => {
-                this.setState({
-                    username:'',
-                    password:'',
-                    nickname:'',
-                    email:'',
-                    name:'',
-                    idNumber:'',
-                    sex:'女',
-                })
-                notification.open({
-                    message: 'Success',
-                    description: '添加成功',
-                    icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />
-
-                });
-                console.log(data);
-            })
-    }
-
 
 
     constructor(){
         super();
         this.state = {
             username:'',
-            password:'',
-            nickname:'',
-            email:'',
-            name:'',
-            idNumber:'',
-            sex:'女',
+            people:null
         };
-        this.input = this.input.bind(this);
+        this.search = this.search.bind(this);
+        this.delete = this.delete.bind(this);
 
+    }
+
+    search(e){
+
+        fetch("/admin/delete/"+this.state.username, { method: 'GET', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', } }).then(response => response.json())
+            .then(data => {
+                var people = data['data']['people'];
+                this.setState({people:people});
+            })
+            .catch(e => console.log("Oops, error", e));
+    }
+    delete(e){
+        notification.open({
+            message: 'Success',
+            description: '删除成功',
+            icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />
+
+        });
+        this.setState({
+            people:null
+        })
     }
 
 
 
-
-
-
-
-    componentWillMount(){
-        // fetch("/area/all").then(response => response.json())
-        //     .then(data => {
-        //         this.setState({areaOptions:data['data']['areaList']});
-        //
-        //     })
-        //     .catch(e => console.log("Oops, error", e));
-    }
 
 
 
@@ -107,12 +72,83 @@ class AddAdmin extends Component {
 
 
     render(){
+        var userProfile;
+        if(this.state.people != null ){
+            userProfile = (
+                <div>
+                    <Form.Item
+                        {...this.formItemLayout}
+                        label="用户ID:"
+                    >
+                        {this.state.people.id}
+                    </Form.Item>
+                    <Form.Item
+                        {...this.formItemLayout}
+                        label="用户名:"
+                    >
+                        {this.state.people.username}
+                    </Form.Item>
+                    <Form.Item
+                        {...this.formItemLayout}
+                        label="加密后密码:"
+                    >
+                        {this.state.people.password}
+                    </Form.Item>
+                    <Form.Item
+                        {...this.formItemLayout}
+                        label="用户昵称:"
+                    >
+                        {this.state.people.nickname}
+                    </Form.Item>
+                    <Form.Item
+                        {...this.formItemLayout}
+                        label="用户真实姓名:"
+                    >
+                        {this.state.people.name}
+                    </Form.Item>
+                    <Form.Item
+                        {...this.formItemLayout}
+                        label="email:"
+                    >
+                        {this.state.people.email}
+                    </Form.Item>
+                    <Form.Item
+                        {...this.formItemLayout}
+                        label="身份证号:"
+                    >
+                        {this.state.people.idNumber}
+                    </Form.Item>
+                    <Form.Item
+                        {...this.formItemLayout}
+                        label="性别:"
+                    >
+                        {this.state.people.sex}
+                    </Form.Item>
+                    <Form.Item
+                        {...this.formButtonLayout}
+                    >
+                        <Button　type="danger" onClick={ this.delete}>删除</Button>
+                    </Form.Item>
+                </div>
+
+
+            )
+        }else{
+            console.log(null);
+        }
 
 
 
         return (
+
+
+
+
             <div>
                 <Form>
+
+
+
 
 
                     <Form.Item
@@ -121,18 +157,17 @@ class AddAdmin extends Component {
                     >
                         <Row>
                             <Col span={12}>
-                                <Input   placeholder="用户名" value={this.state.username} onChange={(e) => {
+                                <Input   placeholder="请输入要被删除用户的用户名" value={this.state.username} onChange={(e) => {
                                     this.setState({username:e.target.value})
                                 }} />
+                            </Col>
+                            <Col span={6}>
+                                <Button type="primary" icon="search"　onClick={this.search}>Search</Button>
                             </Col>
                         </Row>
                     </Form.Item>
 
-                    <Form.Item
-                        {...this.formButtonLayout}
-                    >
-                        <Button onClick={this.input}>上传</Button>
-                    </Form.Item>
+                    {userProfile}
 
                 </Form>
 
